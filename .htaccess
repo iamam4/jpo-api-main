@@ -1,0 +1,16 @@
+Header set Access-Control-Allow-Origin "*" 
+Header set Access-Control-Allow-Headers "headers, Origin, X-Requested-With, Content-Type, Accept, Authorization"
+
+Options -Indexes
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L]
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+
+RewriteRule ^(.*) /index.html [NC,L]
